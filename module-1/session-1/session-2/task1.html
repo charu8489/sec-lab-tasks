@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Conditional Statements Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1976d2;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: #e3f2fd;
+      padding: 10px;
+    }
+    .tabs button {
+      background: #bbdefb;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .tabs button:hover {
+      background: #64b5f6;
+      color: white;
+    }
+    .content {
+      display: none;
+      padding: 20px;
+      background: #fff;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .active {
+      display: block;
+    }
+    input, select, button {
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #1976d2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>JavaScript Conditional Statements Practice</h1>
+  </header>
+
+  <div class="tabs">
+    <button onclick="showTab('ifExample')">Simple If</button>
+    <button onclick="showTab('ifElseExample')">If-Else</button>
+    <button onclick="showTab('elseIfExample')">Else-If Ladder</button>
+    <button onclick="showTab('switchExample')">Switch</button>
+  </div>
+
+  <!-- Simple If -->
+  <div id="ifExample" class="content active">
+    <h2>1 Simple If Statement — Voting Eligibility</h2>
+    <p>Check if a person is eligible to vote based on age.</p>
+    <input type="number" id="age" placeholder="Enter your age">
+    <button onclick="checkAge()">Check</button>
+    <p class="result" id="result1"></p>
+  </div>
+
+  <!-- If-Else -->
+  <div id="ifElseExample" class="content">
+    <h2>2 If-Else Statement — Temperature Check</h2>
+    <p>Check if the entered temperature indicates hot or cold weather.</p>
+    <input type="number" id="temp" placeholder="Enter temperature (°C)">
+    <button onclick="checkTemperature()">Check</button>
+    <p class="result" id="result2"></p>
+  </div>
+
+  <!-- Else-If -->
+  <div id="elseIfExample" class="content">
+    <h2>3 Else-If Ladder — Grade Evaluation</h2>
+    <p>Enter your score to get a grade and message.</p>
+    <input type="number" id="score" placeholder="Enter your score (0-100)">
+    <button onclick="evaluateGrade()">Evaluate</button>
+    <p class="result" id="result3"></p>
+  </div>
+
+  <!-- Switch -->
+  <div id="switchExample" class="content">
+    <h2>4 Switch Statement — Day of the Week</h2>
+    <p>Select a day to see a motivational message.</p>
+    <select id="day">
+      <option value="">--Select a Day--</option>
+      <option value="1">Monday</option>
+      <option value="2">Tuesday</option>
+      <option value="3">Wednesday</option>
+      <option value="4">Thursday</option>
+      <option value="5">Friday</option>
+      <option value="6">Saturday</option>
+      <option value="7">Sunday</option>
+    </select>
+    <button onclick="showMessage()">Show Message</button>
+    <p class="result" id="result4"></p>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      let contents = document.getElementsByClassName("content");
+      for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+      }
+      document.getElementById(tabId).classList.add("active");
+    }
+
+    function checkAge() {
+      let age = document.getElementById("age").value;
+      let result = document.getElementById("result1");
+      if (age >= 18) {
+        result.innerText = "You are eligible to vote!";
+        result.style.color = "green";
+      } else {
+        result.innerText = "You are not eligible to vote yet.";
+        result.style.color = "red";
+      }
+    }
+
+    function checkTemperature() {
+      let temp = document.getElementById("temp").value;
+      let result = document.getElementById("result2");
+      if (temp >= 30) {
+        result.innerText = "It's hot outside!";
+        result.style.color = "red";
+      } else {
+        result.innerText = "It's cold outside!";
+        result.style.color = "blue";
+      }
+    }
+
+    function evaluateGrade() {
+      let score = document.getElementById("score").value;
+      let result = document.getElementById("result3");
+      let message;
+
+      if (score >= 90) {
+        message = "Excellent! You got an A+";
+      } else if (score >= 80) {
+        message = "Great job! You got an A";
+      } else if (score >= 70) {
+        message = "Good effort! You got a B";
+      } else if (score >= 60) {
+        message = "You passed with a C";
+      } else {
+        message = "You failed. Try again next time!";
+      }
+
+      result.innerText = message;
+      result.style.color = (score >= 60) ? "green" : "red";
+    }
+
+    function showMessage() {
+      let day = document.getElementById("day").value;
+      let result = document.getElementById("result4");
+      let msg;
+
+      switch(day) {
+        case "1": msg = "Monday: Start strong!"; break;
+        case "2": msg = "Tuesday: Keep going!"; break;
+        case "3": msg = "Wednesday: Midweek motivation!"; break;
+        case "4": msg = "Thursday: Almost there!"; break;
+        case "5": msg = "Friday: Finish strong!"; break;
+        case "6": msg = "Saturday: Enjoy your weekend!"; break;
+        case "7": msg = "Sunday: Rest and recharge!"; break;
+        default: msg = "Please select a valid day.";
+      }
+
+      result.innerText = msg;
+      result.style.color = "#1976d2";
+    }
+  </script>
+
+</body>
+</html>

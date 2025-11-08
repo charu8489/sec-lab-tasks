@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Data Types and Type Conversion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #0055aa;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 8px;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            background: #eef;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Data Types & Type Conversion</h1>
+
+    <div class="container">
+        <label for="inputValue"><b>Enter a value:</b></label>
+        <input type="text" id="inputValue" placeholder="e.g. 123 or hello">
+
+        <button onclick="convertToNumber()">Convert to Number</button>
+        <button onclick="convertToString()">Convert to String</button>
+        <button onclick="showBooleanConversion()">Convert to Boolean</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function convertToNumber() {
+            const value = document.getElementById("inputValue").value;
+            const converted = Number(value);
+            document.getElementById("output").innerHTML = `
+                <strong>Conversion:</strong> String → Number <br>
+                Original Value: "${value}" (type: ${typeof value}) <br>
+                Converted Value: ${converted} (type: ${typeof converted})
+            `;
+        }
+
+        function convertToString() {
+            const value = document.getElementById("inputValue").value;
+            const num = Number(value);
+            const converted = String(num);
+            document.getElementById("output").innerHTML = `
+                <strong>Conversion:</strong> Number → String <br>
+                Original Value: ${num} (type: ${typeof num}) <br>
+                Converted Value: "${converted}" (type: ${typeof converted})
+            `;
+        }
+
+        function showBooleanConversion() {
+            const value = document.getElementById("inputValue").value;
+            const boolValue = Boolean(value);
+            document.getElementById("output").innerHTML = `
+                <strong>Conversion:</strong> Any → Boolean <br>
+                Original Value: "${value}" (type: ${typeof value}) <br>
+                Converted Value: ${boolValue} (type: ${typeof boolValue})
+            `;
+        }
+    </script>
+</body>
+</html>
